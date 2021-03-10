@@ -1,9 +1,4 @@
-const wines = [
-    {name: "La Crema", varietal: "Chardonnay", vintage: "2015"},
-    {name: "Duckhorn", varietal: "Pinot Noir", vintage: "2016"},
-    {name: "Silver Oak", varietal: "Cabernet", vintage: "2014"},
-    {name: "Rombaueur", varietal: "Zinfandel", vintage: "2013"}
-];
+const wines = [];
 
 function main() {
     return document.getElementById("main")
@@ -106,10 +101,9 @@ function submitForm(e) {
         vintage: vintageInput().value
     })
 
-    resetFormInput()
+    renderWines()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // renderForm();
-    renderWines()
+    renderForm();
 })
