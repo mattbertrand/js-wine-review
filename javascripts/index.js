@@ -119,8 +119,16 @@ function formLinkEvent() {
         renderForm();
     })
 }
+function winesLinkEvent() {
+    winesLink().addEventListener("click", function(e) {
+        e.preventDefault();
+
+        renderWines();
+    })
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     renderForm();
     formLinkEvent();
+    winesLinkEvent()
 })
