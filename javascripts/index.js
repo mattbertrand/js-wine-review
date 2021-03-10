@@ -1,4 +1,9 @@
-const wines = [];
+const wines = [
+    {name: "La Crema", varietal: "Chardonnay", vintage: "2015"},
+    {name: "Duckhorn", varietal: "Pinot Noir", vintage: "2016"},
+    {name: "Silver Oak", varietal: "Cabernet", vintage: "2014"},
+    {name: "Rombaueur", varietal: "Zinfandel", vintage: "2013"}
+];
 
 function main() {
     return document.getElementById("main")
@@ -51,11 +56,27 @@ function formTemplate() {
     `
 }
 
+function winesTemplate() {
+    return `
+    <h3>List of wines</h3>
+        <div id="wines">
+            <div>
+                <h4>Name:</h4>
+                <p>Varietal: - Vintage:</p>
+            </div>
+        </div>
+    `
+}
 
 function renderForm() {
     resetMain();
     main().innerHTML = formTemplate();
     form().addEventListener("submit", submitForm);
+}
+
+function renderWines() {
+    resetMain();
+    main().innerHTML = winesTemplate()
 }
 
 function submitForm(e) {
@@ -71,5 +92,6 @@ function submitForm(e) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    renderForm();
+    // renderForm();
+    renderWines()
 })
