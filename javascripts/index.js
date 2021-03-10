@@ -2,6 +2,24 @@ function main() {
     return document.getElementById("main")
 }
 
+function nameInput() {
+    return document.getElementById('name')
+}
+
+function varietalInput() {
+    return document.getElementById('varietal')
+}
+
+function vintageInput() {
+    return document.getElementById('vintage')
+}
+
+function resetFormInput() {
+    nameInput().innerHTML = "";
+    varietalInput().innerHTML = "";
+    vintageInput().innerHTML = "";
+}
+
 function resetMain() {
     main().innerHTML = "";
 }
