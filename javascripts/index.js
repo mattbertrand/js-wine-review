@@ -20,6 +20,14 @@ function form() {
     return document.getElementById('form')
 }
 
+function formLink() {
+    return document.getElementById('form-link')
+}
+
+function winesLink() {
+    return document.getElementById('wines-link')
+}
+
 function resetFormInput() {
     nameInput().innerHTML = "";
     varietalInput().innerHTML = "";
@@ -104,6 +112,15 @@ function submitForm(e) {
     renderWines()
 }
 
+function formLinkEvent() {
+    formLink().addEventListener("click", function(e) {
+        e.preventDefault();
+
+        renderForm();
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     renderForm();
+    formLinkEvent();
 })
