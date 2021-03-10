@@ -1,3 +1,5 @@
+const wines = [];
+
 function main() {
     return document.getElementById("main")
 }
@@ -12,6 +14,10 @@ function varietalInput() {
 
 function vintageInput() {
     return document.getElementById('vintage')
+}
+
+function form() {
+    return document.getElementById('form')
 }
 
 function resetFormInput() {
@@ -45,9 +51,23 @@ function formTemplate() {
     `
 }
 
+
 function renderForm() {
     resetMain();
     main().innerHTML = formTemplate();
+    form().addEventListener("submit", submitForm);
+}
+
+function submitForm(e) {
+    e.preventDefault();
+
+    wines.push({
+        name: nameInput().value,
+        varietal: varietalInput().value,
+        vintage: vintageInput().value
+    })
+
+    resetFormInput()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
