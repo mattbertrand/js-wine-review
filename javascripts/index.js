@@ -59,13 +59,27 @@ function formTemplate() {
 function winesTemplate() {
     return `
     <h3>List of wines</h3>
-        <div id="wines">
-            <div>
-                <h4>Name:</h4>
-                <p>Varietal: - Vintage:</p>
-            </div>
-        </div>
+        <div id="wines"></div>
     `
+}
+
+function renderWine(wine) {
+    let div = document.createElement("div")
+    let h2 = document.createElement("h2")
+    let h3 = document.createElement("h3")
+    let h4 = document.createElement("h4")
+    let winesDiv = document.getElementById("wines")
+    
+    h2.innerText = wine.name
+    h3.innerText = wine.varietal
+    h4.innerText = wine.vintage
+
+    div.appendChild(h2)
+    div.appendChild(h3)
+    div.appendChild(h4)
+
+    winesDiv.appendChild(div)
+    
 }
 
 function renderForm() {
@@ -77,6 +91,10 @@ function renderForm() {
 function renderWines() {
     resetMain();
     main().innerHTML = winesTemplate()
+    
+    wines.forEach(function(wine) {
+        renderWine(wine)
+    })
 }
 
 function submitForm(e) {
