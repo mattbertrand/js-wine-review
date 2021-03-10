@@ -27,3 +27,11 @@ function formTemplate() {
     `
 }
 
+function renderForm() {
+    resetMain();
+    main().innerHTML = formTemplate();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderForm();
+})
