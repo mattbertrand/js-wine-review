@@ -89,6 +89,7 @@ function renderWine(wine) {
     deleteLink.dataset.id = wine.id
     deleteLink.setAttribute("href", "#")
     deleteLink.innerText = "Delete"
+    deleteLink.addEventListener("click", deleteWine)
 
     h2.innerText = wine.name
     h3.innerText = wine.varietal
@@ -101,6 +102,25 @@ function renderWine(wine) {
 
     winesDiv.appendChild(div)
     
+}
+
+function deleteWine(e) {
+    e.preventDefault();
+
+    let id = e.target.dataset.id
+
+    fetch(baseURL + '/wines/' + id, {
+        method: 'DELETE'
+    })
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(data) {
+        wines = wines.filter(function(wine) {
+            return wine.id !== data.id
+        })
+        renderWines()
+    })
 }
 
 function renderForm() {
