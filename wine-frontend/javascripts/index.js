@@ -73,7 +73,7 @@ function formTemplate() {
 function editFormTemplate(wine) {
     return `
     <h3>Edit Wine</h3>
-        <form id="form">
+        <form id="form" data-id="${wine.id}">
             <div class="input-field">
                 <label for="name">Wine Appellation</label>
                 <input type="text" name="name" id="name" value="${wine.name}">
@@ -172,7 +172,43 @@ function renderForm() {
 function renderEditForm(wine) {
     resetMain();
     main().innerHTML = editFormTemplate(wine);
-    // form().addEventListener("submit", submitForm);
+    form().addEventListener("submit", submitEditForm);
+}
+
+function submitEditForm(e) {
+    e.preventDefault();
+
+    let strongParams = {
+        wine: {
+            name: nameInput().value,
+            varietal: varietalInput().value,
+            vintage: vintageInput().value
+        }
+    }
+
+    const id = e.target.dataset.id
+
+    fetch(baseURL + '/wines/' + id, {
+        method: 'PATCH',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(strongParams)
+    })
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(wine) {
+       let w = wines.find(function(w) {
+           return w.id == wine.id
+       })
+       let idx = wines.indexOf(w)
+
+       wines[idx] = wine
+
+       renderWines();
+    })
 }
 
 function renderWines() {
