@@ -84,11 +84,18 @@ function renderWine(wine) {
     let h3 = document.createElement("h3")
     let h4 = document.createElement("h4")
     let deleteLink = document.createElement("a")
+    let editLink = document.createElement("a")
     let winesDiv = document.getElementById("wines")
+    
+    editLink.dataset.id = wine.id
+    editLink.setAttribute("href", "#")
+    editLink.innerText = "Edit"
     
     deleteLink.dataset.id = wine.id
     deleteLink.setAttribute("href", "#")
     deleteLink.innerText = "Delete"
+    
+    editLink.addEventListener("click", editWine)
     deleteLink.addEventListener("click", deleteWine)
 
     h2.innerText = wine.name
@@ -98,6 +105,7 @@ function renderWine(wine) {
     div.appendChild(h2)
     div.appendChild(h3)
     div.appendChild(h4)
+    div.appendChild(editLink)
     div.appendChild(deleteLink)
 
     winesDiv.appendChild(div)
@@ -122,6 +130,7 @@ function deleteWine(e) {
         renderWines()
     })
 }
+
 
 function renderForm() {
     resetMain();
