@@ -70,7 +70,7 @@ function formTemplate() {
         </form>
     `
 }
-function EditFormTemplate(wine) {
+function editFormTemplate(wine) {
     return `
     <h3>Edit Wine</h3>
         <form id="form">
@@ -151,15 +151,28 @@ function deleteWine(e) {
     })
 }
 
-// function editWine(e) {
-//     e.preventDefault();
-// }
+function editWine(e) {
+    e.preventDefault();
+    const id = e.target.dataset.id
+
+    const wine = wines.find(function(wine) {
+        return wine.id == id
+    })
+
+    renderEditForm(wine)
+}
 
 
 function renderForm() {
     resetMain();
     main().innerHTML = formTemplate();
     form().addEventListener("submit", submitForm);
+}
+
+function renderEditForm(wine) {
+    resetMain();
+    main().innerHTML = editFormTemplate(wine);
+    // form().addEventListener("submit", submitForm);
 }
 
 function renderWines() {
