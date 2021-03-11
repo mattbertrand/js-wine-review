@@ -70,6 +70,26 @@ function formTemplate() {
         </form>
     `
 }
+function EditFormTemplate(wine) {
+    return `
+    <h3>Edit Wine</h3>
+        <form id="form">
+            <div class="input-field">
+                <label for="name">Wine Appellation</label>
+                <input type="text" name="name" id="name" value="${wine.name}">
+            </div>
+            <div class="input-field">
+                <label for="varietal">Grape varietal</label>
+                <input type="text" name="varietal" id="varietal" value="${wine.varietal}">
+            </div>
+            <div class="input-field">
+                <label for="vintage">Grape vintage</label>
+                <input type="integer" name="vintage" id="vintage" value="${wine.vintage}">
+            </div>
+            <input type="submit" value="Edit Wine">
+        </form>
+    `
+}
 
 function winesTemplate() {
     return `
@@ -130,6 +150,10 @@ function deleteWine(e) {
         renderWines()
     })
 }
+
+// function editWine(e) {
+//     e.preventDefault();
+// }
 
 
 function renderForm() {
