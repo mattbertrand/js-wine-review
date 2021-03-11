@@ -1,5 +1,7 @@
 let wines = [];
 
+const baseURL = "http://localhost:3000"
+
 function main() {
     return document.getElementById("main")
 }
@@ -29,7 +31,7 @@ function winesLink() {
 }
 
 function getWines() {
-   fetch("http://localhost:3000/wines")
+   fetch(baseURL + '/wines')
         .then(resp => resp.json())
         .then(function(data) {
             wines = data
@@ -113,11 +115,29 @@ function renderWines() {
 function submitForm(e) {
     e.preventDefault();
 
-    wines.push({
-        name: nameInput().value,
-        varietal: varietalInput().value,
-        vintage: vintageInput().value
+    let strongParams = {
+        wine: {
+            name: nameInput().value,
+            varietal: varietalInput().value,
+            vintage: vintageInput().value
+        }
+    }
+
+    fetch(baseURL + '/wines', {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(strongParams),
+        method: 'POST'
     })
+        .then( function(resp) {
+            return resp.json()
+        })
+        .then( function(wine) {
+            wines.push(wine)
+            renderWines()
+        })
 
     renderWines()
 }
@@ -139,7 +159,7 @@ function winesLinkEvent() {
 
 document.addEventListener('DOMContentLoaded', function() {
     getWines();
-    renderForm();
+    // renderForm();
     formLinkEvent();
     winesLinkEvent()
 })
