@@ -1,4 +1,4 @@
-const wines = [];
+let wines = [];
 
 function main() {
     return document.getElementById("main")
@@ -26,6 +26,16 @@ function formLink() {
 
 function winesLink() {
     return document.getElementById('wines-link')
+}
+
+function getWines() {
+   fetch("http://localhost:3000/wines")
+        .then(resp => resp.json())
+        .then(function(data) {
+            wines = data
+        })
+
+        renderWines()
 }
 
 function resetFormInput() {
@@ -128,6 +138,7 @@ function winesLinkEvent() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    getWines();
     renderForm();
     formLinkEvent();
     winesLinkEvent()
